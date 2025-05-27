@@ -1,116 +1,105 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Thu Hiền</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff;
-      background: linear-gradient(-45deg, #ff0066, #ffcc00, #00ccff, #6600ff);
-      background-size: 600% 600%;
-      animation: bgGradient 20s ease infinite;
+      font-family: 'Segoe UI', sans-serif;
+      animation: bgColorChange 10s infinite alternate;
+      overflow-x: hidden;
     }
 
-    @keyframes bgGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes bgColorChange {
+      0% { background-color: #ffebee; }
+      50% { background-color: #ffe0f7; }
+      100% { background-color: #e0f7fa; }
     }
 
-    header {
+    .hero {
       text-align: center;
-      padding: 100px 20px 80px;
+      padding: 80px 20px;
+      font-size: 40px;
+      font-weight: bold;
+      color: #e91e63;
+      animation: moveText 4s ease-in-out infinite alternate;
     }
 
-    header h1, header h2, header h3 {
-      margin: 0;
-      animation: floatText 4s ease-in-out infinite;
-    }
-
-    header h1 {
-      font-size: 4.5rem;
-      letter-spacing: 0.3em;
-      text-shadow: 0 0 15px #ff99cc, 0 0 25px #ffd700;
-    }
-
-    header h2 {
-      font-size: 3.2rem;
-      color: #ffee99;
-      margin-top: 20px;
-      text-shadow: 0 0 10px #ffffcc;
-    }
-
-    header h3 {
-      font-size: 2rem;
-      margin-top: 10px;
-      color: #ccffff;
-      text-shadow: 0 0 10px #00ffff;
-    }
-
-    @keyframes floatText {
+    @keyframes moveText {
       0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-
-    .slide-container {
-      max-width: 800px;
-      margin: 40px auto;
-      position: relative;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 16px;
-    }
-
-    .slide {
-      display: none;
-      text-align: center;
-    }
-
-    .slide.active {
-      display: block;
-    }
-
-    .slide img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-    }
-
-    .slide h2 {
-      color: #fff0f5;
-      font-size: 1.5rem;
+      100% { transform: translateY(-20px); }
     }
 
     #greeting {
       text-align: center;
-      margin: 60px auto;
+      margin-top: 40px;
     }
-
     .line {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      animation: fadeInText 1s ease forwards;
-      color: #fff;
+      font-size: 24px;
+      margin: 10px 0;
+      color: #333;
     }
 
-    @keyframes fadeInText {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .slide-container {
+      max-width: 600px;
+      margin: 40px auto;
+    }
+
+    .slide {
+      margin-bottom: 40px;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .flip-card-front img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .flip-card-back {
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      padding: 20px;
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Happy Birthday</h1>
-    <h2>Thu Hiền</h2>
-    <h3>28/05</h3>
-  </header>
+  <div class="hero">
+    Happy Birthday<br>Thu Hiền<br>28/05
+  </div>
 
   <div id="greeting">
     <div class="line">Hi!</div>
@@ -119,65 +108,168 @@
   </div>
 
   <div class="slide-container" id="slideshow">
-    <div class="slide active">
-      <img src="anh_01.jpg" alt="Ảnh 1" onerror="this.style.display='none'">
-      <h2>Năm nào đây không nhớ, nhưng mà tốn công tìm lại nên bỏ vô</h2>
-    </div>
+    <!-- Repeat each block for your images -->
     <div class="slide">
-      <img src="anh_02.jpg" alt="Ảnh 2" onerror="this.style.display='none'">
-      <h2>Lớn hơn xíu rồi, k chèn chữ vô ảnh nữa</h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_01.jpg" alt="Ảnh 1" onerror="this.style.display='none'">
+          </div>
+          <div class="flip-card-back">
+            <h2>Năm nào đây không nhớ, nhưng mà tốn công tìm lại nên bỏ vô</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="slide">
-      <img src="anh_03.jpg" alt="Ảnh 3" onerror="this.style.display='none'">
-      <h2>Đầu cấp 3 nè tr, xinh hơn rồi đó</h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_02.jpg" alt="Ảnh 2">
+          </div>
+          <div class="flip-card-back">
+            <h2>Lớn hơn xíu rồi, k chèn chữ vô ảnh nữa</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="slide">
-      <img src="anh_04.jpg" alt="Ảnh 4" onerror="this.style.display='none'">
-      <h2>Này cuối năm 12 rồi nè, có tình iu nên tươi hơn hẳn</h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_03.jpg" alt="Ảnh 3">
+          </div>
+          <div class="flip-card-back">
+            <h2>Đầu cấp 3 nè tr, xinh hơn rồi đó</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="slide">
-      <img src="anh_05.jpg" alt="Ảnh 5" onerror="this.style.display='none'">
-      <h2>Hình ảnh xinh đẹp năm 18 tủi nè</h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_04.jpg" alt="Ảnh 4">
+          </div>
+          <div class="flip-card-back">
+            <h2>Này cuối năm 12 rồi nè, có tình iu nên tươi hơn hẳn</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="slide">
-      <img src="anh_06.jpg" alt="Ảnh 6" onerror="this.style.display='none'">
-      <h2>Và đây là lên đại học nè</h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_05.jpg" alt="Ảnh 5">
+          </div>
+          <div class="flip-card-back">
+            <h2>Hình ảnh xinh đẹp năm 18 tủi nè</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="slide">
-      <img src="anh_007.jpg" alt="Ảnh 7" onerror="this.style.display='none'">
-      <h2>Đi ăn đi chơi với bồ đồ đó</h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_06.jpg" alt="Ảnh 6">
+          </div>
+          <div class="flip-card-back">
+            <h2>Và đây là lên đại học nè</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="slide">
-      <img src="anh_08.jpg" alt="Ảnh 8" onerror="this.style.display='none'">
-      <h2></h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_007.jpg" alt="Ảnh 7">
+          </div>
+          <div class="flip-card-back">
+            <h2>Đi ăn đi chơi với bồ đồ đó</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Các ảnh không có chú thích vẫn hiển thị mặt sau trắng -->
     <div class="slide">
-      <img src="anh_09.jpg" alt="Ảnh 9" onerror="this.style.display='none'">
-      <h2></h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_08.jpg" alt="Ảnh 8">
+          </div>
+          <div class="flip-card-back">
+            <h2></h2>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Tiếp tục thêm các ảnh khác -->
     <div class="slide">
-      <img src="anh_10.jpg" alt="Ảnh 10" onerror="this.style.display='none'">
-      <h2>Này là bước sang tuổi 20</h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_10.jpg" alt="Ảnh 10">
+          </div>
+          <div class="flip-card-back">
+            <h2>Này là bước sang tuổi 20</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="slide">
-      <img src="anh_11.jpg" alt="Ảnh 11" onerror="this.style.display='none'">
-      <h2></h2>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="anh_12.jpg" alt="Ảnh 12">
+          </div>
+          <div class="flip-card-back">
+            <h2>Ảnh duy nhất của 3 đứa</h2>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Lời kết -->
     <div class="slide">
-      <img src="anh_12.jpg" alt="Ảnh 12" onerror="this.style.display='none'">
-      <h2>Ảnh duy nhất của 3 đứa</h2>
-    </div>
-    <div class="slide">
-      <div style="padding: 40px 20px;">
-        <h2 style="font-size: 28px; color: #e91e63; margin-bottom: 20px; animation: fadeInText 1s forwards;">
-          Lời cuối thì 2 đứa t chúc m sinh nhật vui vẻ nhe 🎉
-        </h2>
-        <p style="font-size: 18px; color: #fff; max-width: 600px; margin: 0 auto;">
-          Mong là m sẽ luôn giữ được nụ cười tươi rói như trong mấy tấm ảnh vừa rồi 😊<br />
-          Tuổi mới thật nhiều năng lượng, hạnh phúc và nhìu tiền nhe
-        </p>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div style="padding: 40px 20px; background: #fce4ec; border-radius: 12px;">
+              <h2 style="font-size: 28px; color: #e91e63; margin-bottom: 20px;">
+                Lời cuối thì 2 đứa t chúc m sinh nhật vui vẻ nhe 🎉
+              </h2>
+              <p style="font-size: 18px; color: #555; max-width: 600px; margin: 0 auto;">
+                Mong là m sẽ luôn giữ được nụ cười tươi rói như trong mấy tấm ảnh vừa rồi 😊  
+                <br />Tuổi mới thật nhiều năng lượng, hạnh phúc và nhìu tiền nhe
+              </p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <h2>Chúc Hiền mọi điều tốt lành và luôn hạnh phúc ❤️</h2>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <script>
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+  </script>
 </body>
 </html>
